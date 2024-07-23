@@ -88,38 +88,40 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/{{ auth()->user()->getRoleNames()[0] }}/petugas" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Data Petugas
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/{{ auth()->user()->getRoleNames()[0] }}/pasien" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Data Pasien
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/{{ auth()->user()->getRoleNames()[0] }}/poli" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Data Poli
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/{{ auth()->user()->getRoleNames()[0] }}/dokter" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Data Dokter
-                                </p>
-                            </a>
-                        </li>
+                        @role('petugas')
+                            <li class="nav-item">
+                                <a href="/{{ auth()->user()->getRoleNames()[0] }}/petugas" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Data Petugas
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/{{ auth()->user()->getRoleNames()[0] }}/pasien" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Data Pasien
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/{{ auth()->user()->getRoleNames()[0] }}/poli" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Data Poli
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/{{ auth()->user()->getRoleNames()[0] }}/dokter" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Data Dokter
+                                    </p>
+                                </a>
+                            </li>
+                        @endrole
                         <li class="nav-item">
                             <a href="/{{ auth()->user()->getRoleNames()[0] }}/jadwal" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -128,14 +130,16 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/{{ auth()->user()->getRoleNames()[0] }}/kamar" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Data Kamar
-                                </p>
-                            </a>
-                        </li>
+                        @role('petugas')
+                            <li class="nav-item">
+                                <a href="/{{ auth()->user()->getRoleNames()[0] }}/kamar" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Data Kamar
+                                    </p>
+                                </a>
+                            </li>
+                        @endrole
                         <li class="nav-item">
                             <a href="/{{ auth()->user()->getRoleNames()[0] }}/rekammedispasien" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -186,8 +190,6 @@
     <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dist/js/demo.js') }}"></script>
 </body>
 
 </html>

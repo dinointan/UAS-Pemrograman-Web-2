@@ -5,8 +5,10 @@
             <h3 class="fw-bold">{{ $title }}</h3>
             <div class="card-tools mb-2">
                 <div class="card-tools d-flex justify-content-end">
-                    <a href="/{{ auth()->user()->getRoleNames()[0] }}/rekammedispasien/create"
-                        class="btn btn-primary">Tambah</a>
+                    @role('petugas')
+                        <a href="/{{ auth()->user()->getRoleNames()[0] }}/rekammedispasien/create"
+                            class="btn btn-primary">Tambah</a>
+                    @endrole
                 </div>
             </div>
             <div class="card">

@@ -18,6 +18,39 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="name">Username</label>
+                                    <input type="text" name="name"
+                                        class="form-control @error('name') is-invalid @enderror " id="name"
+                                        placeholder="Masukkan Username" value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email"
+                                        class="form-control @error('email') is-invalid @enderror " id="email"
+                                        placeholder="Masukkan Email" value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror " id="password"
+                                        placeholder="Masukkan Password" value="{{ old('password') }}">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="nik">NIK</label>
                                     <input type="text" name="nik"
                                         class="form-control @error('nik') is-invalid @enderror " id="nik"

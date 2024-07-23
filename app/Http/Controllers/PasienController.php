@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PasienController extends Controller
@@ -36,12 +37,18 @@ class PasienController extends Controller
     {
         $role = auth()->user()->getRoleNames()[0];
         $validateData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
             'nik' => 'required|string',
             'nama' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string',
             'nomor_hp' => 'required|string|max:15',
         ], [
+            'name.required' => 'Name harus diisi.',
+            'email.required' => 'Email harus diisi.',
+            'password.required' => 'Password harus diisi.',
             'nik.required' => 'NIK harus diisi.',
             'nama.required' => 'Nama harus diisi.',
             'tanggal_lahir.required' => 'Tanggal lahir harus diisi.',
@@ -49,7 +56,20 @@ class PasienController extends Controller
             'nomor_hp.required' => 'Nomor HP harus diisi.',
         ]);
 
-        Pasien::create($validateData);
+        // @dd($validateData);
+
+        $user = User::create([
+            "name" => $validateData['name'],
+            "email" => $validateData['email'],
+            "password" => bcrypt($validateData['password'])
+        ]);
+
+        if ($user) {
+            $user->assignRole('pasien');
+            $validateData['id_user'] = $user->id;
+            Pasien::create($validateData);
+        }
+
         flash()->success('Data Berhasil Ditambahkan');
         return redirect("/$role/pasien");
     }
@@ -104,6 +124,7 @@ class PasienController extends Controller
     public function destroy(string $id)
     {
         $role = auth()->user()->getRoleNames()[0];
+        User::destroy(Pasien::find($id)->pluck('id_user'));
         Pasien::destroy($id);
         flash()->success('Data Berhasil Dihapus');
         return redirect("/$role/pasien");
